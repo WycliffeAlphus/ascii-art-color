@@ -12,7 +12,6 @@ func TestAsciiMapping(t *testing.T) {
 	//setting up data to mimic command line arguments
 	args := "Hello"
 	//redirect the standard output to a buffer
-	// Redirect standard output to a buffer
 	var buf bytes.Buffer
 	oldStdout := os.Stdout
 	os.Stdout = &buf
@@ -24,14 +23,15 @@ func TestAsciiMapping(t *testing.T) {
 	out := buf.String()
 
 	expected := []string{
-		`	_              _   _          `,
-		`	| |            | | | |         `,
-		`	| |__     ___  | | | |   ___   `,
-		`	|  _ \   / _ \ | | | |  / _ \  `,
-		`	| | | | |  __/ | | | | | (_) | `,
-		`	|_| |_|  \___| |_| |_|  \___/  `,
+		` _              _   _          `,
+		`| |            | | | |         `,
+		`| |__     ___  | | | |   ___   `,
+		`|  _ \   / _ \ | | | |  / _ \  `,
+		`| | | | |  __/ | | | | | (_) | `,
+		`|_| |_|  \___| |_| |_|  \___/  `,
+		"                               ",
+		"                               ",
 	}
-
 	if !reflect.DeepEqual(out, expected) {
 		fmt.Println("Test passed unsuccessfully")
 	} else {
