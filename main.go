@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	if len(os.Args)  < 2 {
+	if len(os.Args) < 2 {
 		fmt.Fprintln(os.Stderr, `
 USAGE:
 	go run . <text> [OPTION]
@@ -42,10 +42,10 @@ SEE ALSO:
 
 	if len(os.Args) == 3 {
 		flag = os.Args[2]
-		if flag == "-sh" || flag == "-shadow" || flag == "-t" || flag == "-st" || flag == "-standard"{
+		if flag == "-sh" || flag == "-shadow" || flag == "-t" || flag == "-st" || flag == "-standard" {
 			flag = os.Args[2]
 		} else {
-			fmt.Println("error: Expected flags are -sh, -shadow, -t, -st, -standard. You used ",flag)
+			fmt.Println("error: Expected flags are -sh, -shadow, -t, -st, -standard. You used ", flag)
 			os.Exit(1)
 		}
 	}
@@ -67,16 +67,15 @@ SEE ALSO:
 		patternFile = "standard.txt"
 	default:
 		patternFile = "standard.txt"
-	
+
 	}
 
-	
 	PrintingAscii(args, patternFile)
 }
 
 // PrintingAscii given a banner file and some ASCII text to print, prints the graphics of the ASCII text
 func PrintingAscii(text, patternFile string) {
-	for i,_ := range text{
+	for i := range text {
 		if i+1 < len(text) && text[i] == '\\' && text[i+1] == 'a' {
 			fmt.Printf("error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
 			os.Exit(1)
@@ -128,8 +127,8 @@ func PrintingAscii(text, patternFile string) {
 // AsciiMapping given a banner file, reads all graphics representations of the ASCII characters and
 // returns a map of the ASCII character to the graphics representations of the ASCII character
 func AsciiMapping(patternFile string) map[rune][]string {
-	splitted := []string{}
-	if patternFile == "thinkertoy.txt"{
+	var splitted []string
+	if patternFile == "thinkertoy.txt" {
 		testfile, err := os.ReadFile(patternFile)
 		if err != nil {
 			fmt.Println(err.Error())
@@ -142,7 +141,7 @@ func AsciiMapping(patternFile string) map[rune][]string {
 		if err != nil {
 			fmt.Println(err.Error())
 			os.Exit(1)
-	}
+		}
 
 		splitted = strings.Split(string(testfile), "\n")
 	}
