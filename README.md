@@ -14,14 +14,16 @@ To use the ASCII Art Generator, follow these steps:
 Suppose you want to create an ASCII representation of the word "HELLO". You would run the program with the following command:
 go run . "Hello"
 The output would be:
-` _    _          _   _          `
-`| |  | |        | | | |         `
-`| |__| |   ___  | | | |   ___   `
-`|  __  |  / _ \ | | | |  / _ \  `
-`| |  | | |  __/ | | | | | (_) | `
-`|_|  |_|  \___| |_| |_|  \___/  `
-
-
+```
+ _              _   _          
+| |            | | | |         
+| |__     ___  | | | |   ___   
+|  _ \   / _ \ | | | |  / _ \  
+| | | | |  __/ | | | | | (_) | 
+|_| |_|  \___| |_| |_|  \___/  
+                               
+  ```   
+  ```                       
 ## Dependencies
 This program requires Go (Golang) to be installed on your system. You can download and install it from the [official Go website](https://golang.org/dl/).
 
