@@ -22,8 +22,7 @@ The output would be:
 | | | | |  __/ | | | | | (_) | 
 |_| |_|  \___| |_| |_|  \___/  
                                
-  ```   
-  ```                       
+  ```                      
 ## Dependencies
 This program requires Go (Golang) to be installed on your system. You can download and install it from the [official Go website](https://golang.org/dl/).
 
