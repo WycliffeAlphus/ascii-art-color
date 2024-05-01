@@ -49,6 +49,6 @@ func Map(fileName string) map[rune][]string {
 		ourMap[start] = pattern
 		start++
 	}
-	fmt.Println(ourMap)
+	//fmt.Println(ourMap)
 	return ourMap
 }
