@@ -10,7 +10,7 @@ import (
 
 func TestAsciiMapping(t *testing.T) {
 	//setting up data to mimic command line arguments
-	args := []string{"Hello"}
+	args := "Hello"
 	//redirect the standard output to a buffer
 	// Redirect standard output to a buffer
 	var buf bytes.Buffer
@@ -19,7 +19,9 @@ func TestAsciiMapping(t *testing.T) {
 	defer func() { os.Stdout = oldStdout }()
 
 	file := "standard.txt"
-	out := PrintingAscii(sample, file)
+	PrintingAscii(args, file)
+
+	out := buf.String()
 
 	expected := []string{
 		`	_              _   _          `,
