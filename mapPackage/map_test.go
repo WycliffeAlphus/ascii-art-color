@@ -1,7 +1,7 @@
-package main
+package mapPackage_test
 
 import (
-	//"ascii-art/mappackage"
+	"ascii-art/mapPackage"
 	"fmt"
 	"reflect"
 	"testing"
@@ -10,7 +10,7 @@ import (
 func TestMap(t *testing.T) {
 	filetext := "standard.txt"
 
-	out := AsciiMapping(filetext)
+	out := mapPackage.Map(filetext)
 	expected := []string{
 		"           ",
 		`    /\     `,

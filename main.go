@@ -124,9 +124,9 @@ func PrintingAscii(text, patternFile string) {
 
 }
 
-
-func PrintingAsciiTest(text, patternFile string) string {
+func PrintingAsciiTest(text, patternFile string) []string {
 	res := ""
+	ap := []string{}
 	for i := range text {
 		if i+1 < len(text) && text[i] == '\\' && text[i+1] == 'a' {
 			fmt.Printf("error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
@@ -169,19 +169,18 @@ func PrintingAsciiTest(text, patternFile string) string {
 				for _, ch := range word {
 					//fmt.Print(asciiMap[ch][n])
 					res += asciiMap[ch][n]
+
 				}
+				// ap = append(ap, res)
 				//fmt.Println()
 				res += "\n"
 			}
+			ap = append(ap, res)
 		}
 
 	}
-
-	return res
-
+	return ap
 }
-
-
 
 // AsciiMapping given a banner file, reads all graphics representations of the ASCII characters and
 // returns a map of the ASCII character to the graphics representations of the ASCII character
