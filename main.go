@@ -70,7 +70,9 @@ SEE ALSO:
 
 	}
 
-	fmt.Print(PrintingAsciiTest(args, patternFile))
+	PrintingAscii(args, patternFile)
+
+	// fmt.Print(PrintingAsciiTest(args, patternFile))
 }
 
 // PrintingAscii given a banner file and some ASCII text to print, prints the graphics of the ASCII text
@@ -188,6 +190,10 @@ func AsciiMapping(patternFile string) map[rune][]string {
 	var splitted []string
 	if patternFile == "thinkertoy.txt" {
 		testfile, err := os.ReadFile(patternFile)
+		if len(testfile) == 0{
+			fmt.Println("error:",patternFile,"is empty")
+			os.Exit(0)
+		}
 		if err != nil {
 			fmt.Println(err.Error())
 			os.Exit(1)
@@ -196,6 +202,10 @@ func AsciiMapping(patternFile string) map[rune][]string {
 		splitted = strings.Split(string(testfile), "\r\n")
 	} else {
 		testfile, err := os.ReadFile(patternFile)
+		if len(testfile) == 0{
+			fmt.Println("error:",patternFile,"is empty")
+			os.Exit(0)
+		}
 		if err != nil {
 			fmt.Println(err.Error())
 			os.Exit(1)
