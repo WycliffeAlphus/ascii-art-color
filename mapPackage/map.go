@@ -6,49 +6,48 @@ import (
 	"strings"
 )
 
-// func checkFile(){
-// 	args := os.Args
-// 	if len(args) != 2 {
-// 		fmt.Fprint(os.Stderr, `Usage<>
-// 		go run . (stringValue) -> go run . "Hello"
-// 		`)
-// 		os.Exit(1)
-// 	} else {
-// 		// input := args[1]
-// 		file := "standard.txt"
-// 		resultingMap := Map(file)
-// 		fmt.Println(resultingMap)
-// 	}
-// }
+// AsciiMapping given a banner file, reads all graphics representations of the ASCII characters and
+// returns a map of the ASCII character to the graphics representations of the ASCII character
+func AsciiMapping(patternFile string) map[rune][]string {
+	var splitted []string
+	
+	if patternFile == "thinkertoy.txt" {
+		testfile, err1 := os.ReadFile(patternFile)
+		if len(testfile) == 0 {
+			fmt.Fprintln(os.Stderr,"error:", patternFile, "is empty or doesn't exist ")
+			os.Exit(1)
+		} else if err1 != nil {
+			fmt.Println(err1.Error())
+			os.Exit(1)
+		}
 
-var fileContentString []string
-
-func ReadStandard(fileName string) []string {
-	fileContents, err := os.ReadFile(fileName)
-	if err != nil {
-		fmt.Println("Error reading the file")
-		os.Exit(1)
+		splitted = strings.Split(string(testfile), "\r\n") // strings of thinkeratoi are seperated by \r\n [13,10]
 	} else {
-		fileContentString = strings.Split(string(fileContents), "\n")
-	}
-	return fileContentString
-}
+		testfile, err := os.ReadFile(patternFile)
+		if len(testfile) == 0 {
+			fmt.Println("error:", patternFile, "is empty")
+			os.Exit(1)
+		}
+		if err != nil {
+			fmt.Println(err.Error())
+			os.Exit(1)
+		}
 
-func Map(fileName string) map[rune][]string {
-	InputContents := ReadStandard(fileName)
-	ourMap := make(map[rune][]string)
-	start := ' '
-	i := 1
-	for i < len(InputContents) {
-		pattern := []string{}
-		for counter := 0; counter < 8; counter++ {
-			pattern = append(pattern, InputContents[i])
+		splitted = strings.Split(string(testfile), "\n")
+	}
+
+	asciiMapping := make(map[rune][]string)
+	startAscii := ' '
+	for i := 1; i < len(splitted); {
+		arrayString := []string{}
+		for j := 0; j < 8; j++ {
+			arrayString = append(arrayString, splitted[i])
 			i++
 		}
 		i++
-		ourMap[start] = pattern
-		start++
+		asciiMapping[startAscii] = arrayString
+		startAscii++
 	}
-	//fmt.Println(ourMap)
-	return ourMap
+
+	return asciiMapping
 }

@@ -7,10 +7,10 @@ import (
 	"testing"
 )
 
-func TestMap(t *testing.T) {
+func TestAsciiMapping(t *testing.T) {
 	filetext := "standard.txt"
 
-	out := mapPackage.Map(filetext)
+	out := mapPackage.AsciiMapping(filetext)
 	expected := []string{
 		"           ",
 		`    /\     `,

@@ -1,15 +1,16 @@
-package main
+package printingasciipackage_test
 
 import (
 	"fmt"
 	"reflect"
 	"testing"
+	"ascii-art/printingasciipackage"
 )
 
 func TestPrintingAscii(t *testing.T) {
 	args := "hello" // string to be patterned and printed
 	file := "standard.txt"
-	out := PrintingAscii(args, file)
+	out := printingasciipackage.PrintingAscii(args, file)
 	expected := []string{
 		` _              _   _          `,
 		`| |            | | | |         `,
