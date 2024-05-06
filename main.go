@@ -70,65 +70,15 @@ SEE ALSO:
 
 	}
 
-	PrintingAscii(args, patternFile)
+	ap := PrintingAscii(args, patternFile)
+	fmt.Print(ap)
 
 	// fmt.Print(PrintingAsciiTest(args, patternFile))
 }
 
 // PrintingAscii given a banner file and some ASCII text to print, prints the graphics of the ASCII text
-func PrintingAscii(text, patternFile string) {
-	for i := range text {
-		if i+1 < len(text) && text[i] == '\\' && text[i+1] == 'a' {
-			fmt.Printf("error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
-			os.Exit(1)
-		}
-		if i+1 < len(text) && text[i] == '\\' && text[i+1] == 'b' {
-			fmt.Printf("error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
-			os.Exit(1)
-		}
-		if i+1 < len(text) && text[i] == '\\' && text[i+1] == 't' {
-			fmt.Printf("error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
-			os.Exit(1)
-		}
-		if i+1 < len(text) && text[i] == '\\' && text[i+1] == 'v' {
-			fmt.Printf("error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
-			os.Exit(1)
-		}
-		if i+1 < len(text) && text[i] == '\\' && text[i+1] == 'f' {
-			fmt.Printf("error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
-			os.Exit(1)
-		}
-		if i+1 < len(text) && text[i] == '\\' && text[i+1] == 'r' {
-			fmt.Printf("error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
-			os.Exit(1)
-		}
-	}
-	lines := strings.Split(text, "\\n")
-	asciiMap := AsciiMapping(patternFile)
-
-	count := 0
-	for _, word := range lines {
-		if word == "" {
-			count++
-			if count < len(lines) {
-				fmt.Println()
-			}
-		} else {
-			for n := 0; n < 8; n++ {
-				for _, ch := range word {
-					fmt.Print(asciiMap[ch][n])
-				}
-				fmt.Println()
-			}
-		}
-
-	}
-
-}
-
-func PrintingAsciiTest(text, patternFile string) []string {
-	res := ""
-	ap := []string{}
+func PrintingAscii(text, patternFile string)string {
+	var res string
 	for i := range text {
 		if i+1 < len(text) && text[i] == '\\' && text[i+1] == 'a' {
 			fmt.Printf("error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
@@ -169,19 +119,15 @@ func PrintingAsciiTest(text, patternFile string) []string {
 		} else {
 			for n := 0; n < 8; n++ {
 				for _, ch := range word {
-					//fmt.Print(asciiMap[ch][n])
 					res += asciiMap[ch][n]
-
 				}
-				// ap = append(ap, res)
-				//fmt.Println()
 				res += "\n"
 			}
-			ap = append(ap, res)
-		}
-
+			
 	}
-	return ap
+	
+}
+return res
 }
 
 // AsciiMapping given a banner file, reads all graphics representations of the ASCII characters and
@@ -190,9 +136,9 @@ func AsciiMapping(patternFile string) map[rune][]string {
 	var splitted []string
 	if patternFile == "thinkertoy.txt" {
 		testfile, err := os.ReadFile(patternFile)
-		if len(testfile) == 0{
-			fmt.Println("error:",patternFile,"is empty")
-			os.Exit(0)
+		if len(testfile) == 0 {
+			fmt.Println("error:", patternFile, "is empty")
+			os.Exit(1)
 		}
 		if err != nil {
 			fmt.Println(err.Error())
@@ -202,8 +148,8 @@ func AsciiMapping(patternFile string) map[rune][]string {
 		splitted = strings.Split(string(testfile), "\r\n")
 	} else {
 		testfile, err := os.ReadFile(patternFile)
-		if len(testfile) == 0{
-			fmt.Println("error:",patternFile,"is empty")
+		if len(testfile) == 0 {
+			fmt.Println("error:", patternFile, "is empty")
 			os.Exit(0)
 		}
 		if err != nil {
