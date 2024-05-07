@@ -34,6 +34,10 @@ func PrintingAscii(text, patternFile string) string {
 			fmt.Printf("error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
 			os.Exit(1)
 		}
+		if text[i] > 127{
+			fmt.Println("error: only Ascii Characters between Ascii 0 and Ascii 127 are supported")
+			os.Exit(0)
+		}
 	}
 	lines := strings.Split(text, "\\n")
 	asciiMap := mapPackage.AsciiMapping(patternFile)
