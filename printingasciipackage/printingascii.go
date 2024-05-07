@@ -8,6 +8,7 @@ import("strings"
 // Reads input text,gets the pattern convert it to ascii art
 
 func PrintingAscii(text, patternFile string) string {
+	text=strings.ReplaceAll(text,"\n","\\n")
 	res:=""
 	for i := range text {
 		if i+1 < len(text) && text[i] == '\\' && text[i+1] == 'a' {
@@ -35,9 +36,9 @@ func PrintingAscii(text, patternFile string) string {
 			os.Exit(1)
 		}
 		if text[i] > 127{
-			fmt.Println("error: only Ascii Characters above 127 are not supported")
-			os.Exit(0)
-		}
+			fmt.Println("error: only Ascii.Characters above 127 are not supported")
+			os.Exit(1)
+		} 
 	}
 	lines := strings.Split(text, "\\n")
 	asciiMap := mapPackage.AsciiMapping(patternFile)
@@ -49,7 +50,7 @@ func PrintingAscii(text, patternFile string) string {
 			if count < len(lines) {
 				res += "\n"
 			}
-		} else {
+		}else {
 			for n := 0; n < 8; n++ {
 				for _, ch := range word {
 					res += asciiMap[ch][n]

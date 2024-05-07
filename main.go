@@ -27,7 +27,7 @@ SEE ALSO:
 	if args == "" {
 		return
 	}
-
+	
 	if len(os.Args) == 3 {
 		flag = os.Args[2]
 		if flag == "-sh" || flag == "-t" {
