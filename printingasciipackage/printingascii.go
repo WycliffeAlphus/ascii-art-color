@@ -35,7 +35,7 @@ func PrintingAscii(text, patternFile string) string {
 			os.Exit(1)
 		}
 		if text[i] > 127{
-			fmt.Println("error: only Ascii Characters between Ascii 0 and Ascii 127 are supported")
+			fmt.Println("error: only Ascii Characters above 127 are not supported")
 			os.Exit(0)
 		}
 	}
