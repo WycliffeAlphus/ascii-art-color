@@ -11,8 +11,8 @@ To use the ASCII Art Generator, follow these steps:
 5. The program will output the graphic representation of the input string using ASCII characters.
 
 ## Example
-Suppose you want to create an ASCII representation of the word "HELLO". You would run the program with the following command:
-go run . "Hello"
+Suppose you want to create an ASCII representation of the word "hELLO". You would run the program with the following command:
+go run . "hello"
 The output would be:
 ```
  _              _   _          
