@@ -1,23 +1,26 @@
 package printingasciipackage
 
-import("strings"
-"fmt"
-"os"
-"ascii-art/mapPackage")
+import (
+	"fmt"
+	"os"
+	"strings"
+
+	"ascii-art/mapPackage"
+)
 
 // Reads input text,gets the pattern convert it to ascii art
 
 func PrintingAscii(text, patternFile string) string {
-	text=strings.ReplaceAll(text,"\n","\\n")
-	res:=""
+	text = strings.ReplaceAll(text, "\n", "\\n")
+	res := ""
 	for i := range text {
 		if i+1 < len(text) && text[i] == '\\' && text[i+1] == 'a' {
 			fmt.Printf("error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
 			os.Exit(1)
 		}
 		if i+1 < len(text) && text[i] == '\\' && text[i+1] == 'b' {
-			fmt.Printf("error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
-			os.Exit(1)
+			text = text[:i-1] + text[i+2:]
+			continue
 		}
 		if i+1 < len(text) && text[i] == '\\' && text[i+1] == 't' {
 			fmt.Printf("error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
@@ -35,10 +38,10 @@ func PrintingAscii(text, patternFile string) string {
 			fmt.Printf("error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
 			os.Exit(1)
 		}
-		if text[i] > 127{
+		if i+1 < len(text) && text[i] > 127 {
 			fmt.Println("error: Ascii Characters above 127 are not supported")
 			os.Exit(1)
-		} 
+		}
 	}
 	lines := strings.Split(text, "\\n")
 	asciiMap := mapPackage.AsciiMapping(patternFile)
@@ -50,16 +53,14 @@ func PrintingAscii(text, patternFile string) string {
 			if count < len(lines) {
 				res += "\n"
 			}
-		}else {
+		} else {
 			for n := 0; n < 8; n++ {
 				for _, ch := range word {
 					res += asciiMap[ch][n]
 				}
 				res += "\n"
 			}
-
 		}
-
 	}
 	return res
 }
