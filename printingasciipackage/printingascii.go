@@ -41,14 +41,16 @@ func PrintingAscii(text, patternFile string) string {
 			os.Exit(1)
 		}
 		if i+1 < len(text) && text[i] == '\\' && text[i+1] == 'r' {
-			if i == 0 {
-				text = text[i+2:]
-			} else {
-				text = text[i+2:]
-				i = 0
-			}
+			// if i == 0 {
+			// 	text = text[i+2:]
+			// } else {
+			// 	text = text[i+2:]
+			// 	i = 0
+			// }
 
-			continue
+			// continue
+			fmt.Printf("error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
+			os.Exit(1)
 		}
 		if i+1 < len(text) && text[i] > 127 {
 			fmt.Println("error: Ascii Characters above 127 are not supported")
