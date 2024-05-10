@@ -7,7 +7,7 @@ To use the ASCII Art Generator, follow these steps:
 1. Clone this repository to your local machine.
 2. Navigate to the directory where the repository is cloned.
 3. Build the program using the Go compiler:
-4. Run the program from the command line, providing a string as an argument:
+4. Run the program from the command line, providing a string as an argument: Remember to enclose the string in a double or single quotation marks
 5. The program will output the graphic representation of the input string using ASCII characters.
 
 ## Example
