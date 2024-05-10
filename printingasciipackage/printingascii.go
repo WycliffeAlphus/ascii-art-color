@@ -16,7 +16,7 @@ func PrintingAscii(text, patternFile string) string {
 
 	for i := 0; i < len(text); {
 		if i+1 < len(text) && text[i] == '\\' && text[i+1] == 'a' {
-			fmt.Printf("error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
+			fmt.Fprintf(os.Stderr, "error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
 			os.Exit(1)
 		}
 		if i+1 < len(text) && text[i] == '\\' && text[i+1] == 'b' {
@@ -33,27 +33,19 @@ func PrintingAscii(text, patternFile string) string {
 		}
 		if i+1 < len(text) && text[i] == '\\' && text[i+1] == 'v' {
 
-			fmt.Printf("error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
+			fmt.Fprintf(os.Stderr, "error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
 			os.Exit(1)
 		}
 		if i+1 < len(text) && text[i] == '\\' && text[i+1] == 'f' {
-			fmt.Printf("error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
+			fmt.Fprintf(os.Stderr, "error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
 			os.Exit(1)
 		}
 		if i+1 < len(text) && text[i] == '\\' && text[i+1] == 'r' {
-			// if i == 0 {
-			// 	text = text[i+2:]
-			// } else {
-			// 	text = text[i+2:]
-			// 	i = 0
-			// }
-
-			// continue
-			fmt.Printf("error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
+			fmt.Fprintf(os.Stderr, "error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
 			os.Exit(1)
 		}
 		if i+1 < len(text) && text[i] > 127 {
-			fmt.Println("error: Ascii Characters above 127 are not supported")
+			fmt.Fprintln(os.Stderr, "error: Only ascii characters are allowed")
 			os.Exit(1)
 		}
 		i++
