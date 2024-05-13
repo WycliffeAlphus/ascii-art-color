@@ -10,11 +10,11 @@ import (
 // returns a map of the ASCII character to the graphics representations of the ASCII character
 func AsciiMapping(patternFile string) map[rune][]string {
 	var splitted []string
-	
+
 	if patternFile == "thinkertoy.txt" {
 		testfile, err1 := os.ReadFile(patternFile)
 		if len(testfile) == 0 {
-			fmt.Fprintln(os.Stderr,"error:", patternFile, "is empty or doesn't exist ")
+			fmt.Fprintln(os.Stderr, "error:", patternFile, "is empty or doesn't exist ")
 			os.Exit(1)
 		} else if err1 != nil {
 			fmt.Println(err1.Error())
@@ -36,7 +36,7 @@ func AsciiMapping(patternFile string) map[rune][]string {
 		splitted = strings.Split(string(testfile), "\n")
 	}
 
-	if len(splitted) != 856{
+	if len(splitted) != 856 {
 		fmt.Printf("error : %v file modified, exiting...\n", patternFile)
 		os.Exit(1)
 	}

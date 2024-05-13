@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+
 	"ascii-art/printingasciipackage"
 )
 
@@ -27,8 +28,8 @@ SEE ALSO:
 	if args == "" {
 		return
 	}
-	
-	if len(os.Args) == 3 {
+
+	if len(os.Args) == 3 { // checks that correct flag is assigned as argument
 		flag = os.Args[2]
 		if flag == "-sh" || flag == "-t" {
 			flag = os.Args[2]
@@ -55,7 +56,3 @@ SEE ALSO:
 	ap := printingasciipackage.PrintingAscii(args, patternFile)
 	fmt.Print(ap)
 }
-
-
-
-

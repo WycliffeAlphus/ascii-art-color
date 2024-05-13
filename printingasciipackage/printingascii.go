@@ -20,12 +20,12 @@ func PrintingAscii(text, patternFile string) string {
 			os.Exit(1)
 		}
 		if i+1 < len(text) && text[i] == '\\' && text[i+1] == 'b' {
-			l := len(text)-2
+			l := len(text) - 2
 			if i == 0 {
 				text = text[i+2:]
-			} else if i == l { 
+			} else if i == l {
 				text = text[:l]
-			} else { 
+			} else {
 				text = text[:i-1] + text[i+2:]
 				i = 0
 			}
@@ -57,7 +57,7 @@ func PrintingAscii(text, patternFile string) string {
 	asciiMap := mapPackage.AsciiMapping(patternFile)
 
 	count := 0
-	for _, word := range lines {
+	for _, word := range lines { // case of multiple newlines
 		if word == "" {
 			count++
 			if count < len(lines) {
