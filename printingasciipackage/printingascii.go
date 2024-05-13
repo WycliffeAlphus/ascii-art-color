@@ -20,9 +20,12 @@ func PrintingAscii(text, patternFile string) string {
 			os.Exit(1)
 		}
 		if i+1 < len(text) && text[i] == '\\' && text[i+1] == 'b' {
+			l := len(text)-2
 			if i == 0 {
 				text = text[i+2:]
-			} else {
+			} else if i == l { 
+				text = text[:l]
+			} else { 
 				text = text[:i-1] + text[i+2:]
 				i = 0
 			}
