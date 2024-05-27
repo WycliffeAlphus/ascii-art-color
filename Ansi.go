@@ -3,25 +3,41 @@ package main
 import (
 	"fmt"
 	"os"
-	"strings"
+	// "strings"
 )
 
 func main() {
 	args := os.Args[1:]
 	colorArg := args[0]
 	subStringArg := args[1]
-	fmt.Println(subStringArg)
 	givenString := args[2]
 	var colorWanted string
-	for i, ch := range colorArg {
+	for i, ch := range colorArg { //finds color user wants
 		if ch == '=' {
 			colorWanted = colorArg[i+1:]
 			break
 		}
 	}
-	color(givenString, subStringArg, colorWanted)
+
+	color := color(colorWanted) // gets the ANSI code of the color
+	for _, char := range givenString {
+		toColor := false
+		for _, ch :=  range subStringArg{
+			if ch == char {
+				toColor = true
+			}
+		}
+		if toColor {
+			fmt.Printf("%s%s" + "\033[0m", color,string(char)) //colors then resets
+			continue
+		} else {
+			fmt.Printf("%s",string(char)) //prints non-colored runes
+			continue
+		}
+	}
+	fmt.Println()
 }
-func color(str, sub, color string) {
+func color(color string)  string{
 	mapColor := map[string]string{
 		"black":   "\033[30m",
 		"red":     "\033[31m",
@@ -31,32 +47,9 @@ func color(str, sub, color string) {
 		"magneta": "\033[35m",
 		"cyan":    "\033[36m",
 		"white":   "\033[37m",
+		"test": "Hello world",
 	}
-	
-   
-
-		for key, value := range mapColor {
-			if key == color {
-				for _,ch:=range str{
-					for _,char:=range sub{
-						if char==ch{
-						modify:=func(r rune)rune{
-							  if r==char{
-								colored,s:=value,char
-				                fmt.Println(colored)
-								return s
-							}
-							return r
-						}
-						result:=strings.Map(modify,str)
-					fmt.Println(result)
-					}
-					}
-					
-				}
-			}
-		}
-		
-	}
+	return mapColor[color]
+}
 
 
