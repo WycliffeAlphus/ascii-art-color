@@ -1,23 +1,38 @@
 package colorString
 
-import "strings"
+import (
+	"strings"
+)
 
-func colorStr(text, color, letters string) string { // The text is the string to be colored, color is the specified color
-	// letters are the characters to be colored if specified
-
-	reset := "\033[0m" // for resetting the applied color after use
-
+func colorStr(text, color, letters string) string {
+	reset := "\033[0m"
 	if letters == "" {
-		return color + text + reset // If letter is not specified
+		return color + text + reset
+	}
+	var r []rune
+	for _, char := range letters {
+		r = append(r, char)
 	}
 
 	coloredS := ""
 
-	for _, char := range text {
-		if strings.ContainsRune(letters, char) {
-			coloredS += color + string(char) + reset
+	if len(r) == 1 {
+		for _, char := range text {
+			if strings.ContainsRune(letters, char) {
+				coloredS += color + string(char) + reset
+			} else {
+				coloredS += string(char)
+			}
+		}
+	}
+	i := 0
+	for i < len(text) {
+		if strings.HasPrefix(text[i:], letters) {
+			coloredS += color + letters + reset
+			i += len(letters)
 		} else {
-			coloredS += string(char)
+			coloredS += string(text[i])
+			i++
 		}
 	}
 	return coloredS
