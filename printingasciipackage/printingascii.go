@@ -10,7 +10,7 @@ import (
 
 // Reads input text,gets the pattern convert it to ascii art
 
-func PrintingAscii(text, patternFile string) string {
+func PrintingAscii(text, patternFile, color, letters string) string {
 	text = strings.ReplaceAll(text, "\n", "\\n")
 	res := ""
 
@@ -56,6 +56,7 @@ func PrintingAscii(text, patternFile string) string {
 	lines := strings.Split(text, "\\n")
 	asciiMap := mapPackage.AsciiMapping(patternFile)
 
+	// pattern := ""
 	count := 0
 	for _, word := range lines { // case of multiple newlines
 		if word == "" {
@@ -66,11 +67,33 @@ func PrintingAscii(text, patternFile string) string {
 		} else {
 			for n := 0; n < 8; n++ {
 				for _, ch := range word {
-					res += asciiMap[ch][n]
+					// word == hello
+					// pattrn = el
+
+					if len(letters) == 0{
+						res += color + asciiMap[ch][n] + "\033[0m"
+					} else {
+						if isInside(string(ch), letters){
+							
+							res +=  color + asciiMap[ch][n] + "\033[0m" 
+							continue
+						}
+						res += asciiMap[ch][n]
+						}
 				}
 				res += "\n"
 			}
 		}
 	}
 	return res
+}
+
+
+func isInside(alpha, s1 string) bool {
+	for _, ch := range s1{
+		if alpha == string(ch){
+			return true
+		}
+	}
+	return false
 }
