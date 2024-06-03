@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	if len(os.Args) < 2 || len(os.Args) > 4{
+	if len(os.Args) < 2 || len(os.Args) > 4 {
 		fmt.Fprintln(os.Stderr, `Usage: go run . [OPTION] [STRING]
 EX: go run . --color=<color> <letters to be colored> "something"`)
 		return
