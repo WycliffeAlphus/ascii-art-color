@@ -4,13 +4,16 @@ import (
 	"fmt"
 	"reflect"
 	"testing"
+
 	"ascii-art/printingasciipackage"
 )
 
 func TestPrintingAscii(t *testing.T) {
 	args := "hello" // string to be patterned and printed
-	file := "standard.txt"
-	out := printingasciipackage.PrintingAscii(args, file)
+	color := "red"
+	file := "/home/wonyango/Desktop/ascii-art-color/standard.txt"
+	letters := "ll"
+	out := printingasciipackage.PrintingAscii(args, file, color, letters)
 	expected := []string{
 		` _              _   _          `,
 		`| |            | | | |         `,
@@ -21,9 +24,9 @@ func TestPrintingAscii(t *testing.T) {
 		"                               ",
 		"                               ",
 	}
-	//PrintingAscii function returns a string of len 256
-	//we have 8 lines ,so length of each line is (256/8)=32
-	//we access from index 0 to 255
+	// PrintingAscii function returns a string of len 256
+	// we have 8 lines ,so length of each line is (256/8)=32
+	// we access from index 0 to 255
 	if !reflect.DeepEqual(out[:31], expected[0]) {
 		fmt.Println("Test  line 1 failed")
 		t.Errorf("got\n %v, want %v", out[:31], expected[0])
