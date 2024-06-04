@@ -10,7 +10,7 @@ import (
 func TestPrintingAscii(t *testing.T) {
 	args := "hello" // string to be patterned and printed
 	file := "standard.txt"
-	out := printingasciipackage.PrintingAscii(args, file)
+	out := printingasciipackage.PrintingAscii(args, file,"\033[0m", "")
 	expected := []string{
 		` _              _   _          `,
 		`| |            | | | |         `,

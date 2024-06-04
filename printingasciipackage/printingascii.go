@@ -5,6 +5,7 @@ import (
 	"os"
 	"strings"
 
+	colorfeature "ascii-art/colorFeature"
 	"ascii-art/mapPackage"
 )
 
@@ -56,8 +57,9 @@ func PrintingAscii(text, patternFile, color, letters string) string {
 	lines := strings.Split(text, "\\n")
 	asciiMap := mapPackage.AsciiMapping(patternFile)
 
-	// pattern := ""
-	count := 0
+	
+	if !strings.Contains(text,letters){
+		count := 0
 	for _, word := range lines { // case of multiple newlines
 		if word == "" {
 			count++
@@ -67,14 +69,10 @@ func PrintingAscii(text, patternFile, color, letters string) string {
 		} else {
 			for n := 0; n < 8; n++ {
 				for _, ch := range word {
-					// word == hello
-					// pattrn = el
-
 					if len(letters) == 0{
 						res += color + asciiMap[ch][n] + "\033[0m"
 					} else {
 						if isInside(string(ch), letters){
-							
 							res +=  color + asciiMap[ch][n] + "\033[0m" 
 							continue
 						}
@@ -84,16 +82,57 @@ func PrintingAscii(text, patternFile, color, letters string) string {
 				res += "\n"
 			}
 		}
-	}
-	return res
-}
-
-
-func isInside(alpha, s1 string) bool {
-	for _, ch := range s1{
-		if alpha == string(ch){
-			return true
+		return res
+	} 
+	}else{
+			alphaArray:=colorfeature.FindSubStringIndex(text,letters)
+			count:=0
+			for wordIndex, word := range lines { // case of multiple newlines
+				if word == "" {
+					count++
+					if count < len(lines) {
+						res += "\n"
+					}
+				} else {
+					for n := 0; n < 8; n++ {
+						for runeIndex, ch := range word {
+		                    if wordIndex > 0{
+								checkIndex := 0
+								for x := 0; x < wordIndex; x++{
+									checkIndex += len(lines[x]) + 1
+								}
+								if  colorfeature.IndicesInArr(alphaArray, checkIndex+runeIndex+wordIndex){
+									res += color + asciiMap[ch][n] + "\033[0m"
+									continue
+								}
+								res += asciiMap[ch][n]
+							} else {
+								if  colorfeature.IndicesInArr(alphaArray, runeIndex){
+									res += color + asciiMap[ch][n] + "\033[0m"
+									continue
+								}
+								res += asciiMap[ch][n]
+							}
+		
+							
+						}
+						res += "\n"
+					}
+				}
+			}
+			
 		}
+		return res
 	}
-	return false
-}
+		
+	func isInside(alpha, s1 string) bool {
+		for _, ch := range s1{
+			if alpha == string(ch){
+				return true
+			}
+		}
+		return false
+	}
+
+
+	

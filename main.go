@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 	"strings"
-
 	"ascii-art/printingasciipackage"
 )
 
@@ -20,18 +19,18 @@ EX: go run . --color=<color> <letters to be colored> "something"`)
 EX: go run . --color=<color> <letters to be colored> "something"`)
 			return
 		}
-		ap := printingasciipackage.PrintingAscii(os.Args[1], "standard.txt", "\033[0m", "")
+		ap := printingasciipackage.PrintingAscii(os.Args[1], "standard.txt", "\033[0m", "") // normal pattern
 		fmt.Print(ap)
 	}
 
 	if len(os.Args) == 3 {
 		color := FindingColor(strings.ToLower(os.Args[1]))
-		ap := printingasciipackage.PrintingAscii(os.Args[2], "standard.txt", color, "")
+		ap := printingasciipackage.PrintingAscii(os.Args[2], "standard.txt", color, os.Args[2]) //color without specific letters
 		fmt.Print(ap)
 	}
 	if len(os.Args) == 4 {
 		color := FindingColor(strings.ToLower(os.Args[1]))
-		ap := printingasciipackage.PrintingAscii(os.Args[3], "standard.txt", color, os.Args[2])
+		ap := printingasciipackage.PrintingAscii(os.Args[3], "standard.txt", color, os.Args[2]) //color with specifird letters
 		fmt.Print(ap)
 	}
 }
