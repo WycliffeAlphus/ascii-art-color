@@ -1,20 +1,14 @@
 package printingasciipackage
-
 import (
 	"fmt"
 	"os"
 	"strings"
-
-	colorfeature "ascii-art/colorFeature"
-	"ascii-art/mapPackage"
+	"ascii-art-color/mapPackage"
+	"ascii-art-color/utils"
 )
-
 // Reads input text,gets the pattern convert it to ascii art
-
-func PrintingAscii(text, patternFile, color, letters string) string {
 	text = strings.ReplaceAll(text, "\n", "\\n")
 	res := ""
-
 	for i := 0; i < len(text); {
 		if i+1 < len(text) && text[i] == '\\' && text[i+1] == 'a' {
 			fmt.Fprintf(os.Stderr, "error: Special character %v%v is not supported \n", string(text[i]), string(text[i+1]))
