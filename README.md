@@ -23,7 +23,7 @@ Suppose you want to create a colored ASCII representation of the word "HeY GuYs 
 
  You would run the program with the following command:
 ```
-go run . --color=blue Guys 
+go run . --color=blue GuYs "Hey GuYs\n wassgood aGuYs
 ```
 
 The output would be:
