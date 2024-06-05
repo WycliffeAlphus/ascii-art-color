@@ -1,81 +1,85 @@
 package printingasciipackage_test
 
 import (
+	"ascii-art-color/printingasciipackage"
 	"fmt"
 	"reflect"
+	"strings"
 	"testing"
-	"ascii-art/printingasciipackage"
 )
 
 func TestPrintingAscii(t *testing.T) {
 	args := "hello" // string to be patterned and printed
 	file := "standard.txt"
-	out := printingasciipackage.PrintingAscii(args, file,"\033[0m", "")
+	out := printingasciipackage.PrintingAscii(args, file,"\033[31m", "")
 	expected := []string{
-		` _              _   _          `,
-		`| |            | | | |         `,
-		`| |__     ___  | | | |   ___   `,
-		`|  _ \   / _ \ | | | |  / _ \  `,
-		`| | | | |  __/ | | | | | (_) | `,
-		`|_| |_|  \___| |_| |_|  \___/  `,
-		"                               ",
-		"                               ",
+		"\033[31m _      \033[0m\033[31m       \033[0m\033[31m _  \033[0m\033[31m _  \033[0m\033[31m        \033[0m",
+		"\033[31m| |     \033[0m\033[31m       \033[0m\033[31m| | \033[0m\033[31m| | \033[0m\033[31m        \033[0m",
+		"\033[31m| |__   \033[0m\033[31m  ___  \033[0m\033[31m| | \033[0m\033[31m| | \033[0m\033[31m  ___   \033[0m",
+		"\033[31m|  _ \\  \033[0m\033[31m / _ \\ \033[0m\033[31m| | \033[0m\033[31m| | \033[0m\033[31m / _ \\  \033[0m",
+		"\033[31m| | | | \033[0m\033[31m|  __/ \033[0m\033[31m| | \033[0m\033[31m| | \033[0m\033[31m| (_) | \033[0m",
+		"\033[31m|_| |_| \033[0m\033[31m \\___| \033[0m\033[31m|_| \033[0m\033[31m|_| \033[0m\033[31m \\___/  \033[0m",
+		"\033[31m        \033[0m\033[31m       \033[0m\033[31m    \033[0m\033[31m    \033[0m\033[31m        \033[0m",
+		"\033[31m        \033[0m\033[31m       \033[0m\033[31m    \033[0m\033[31m    \033[0m\033[31m        \033[0m",
 	}
+
 	//PrintingAscii function returns a string of len 256
 	//we have 8 lines ,so length of each line is (256/8)=32
 	//we access from index 0 to 255
-	if !reflect.DeepEqual(out[:31], expected[0]) {
+	splitOut := strings.Split(out, "\n")
+
+	if !reflect.DeepEqual(splitOut[0], expected[0]) {
 		fmt.Println("Test  line 1 failed")
-		t.Errorf("got\n %v, want %v", out[:31], expected[0])
+		t.Errorf("got\n %v, want %v", splitOut[0], expected[0])
 		return
 	} else {
 		fmt.Println(" line 1 Test passed successfully")
 	}
-	if !reflect.DeepEqual(out[32:63], expected[1]) {
+	if !reflect.DeepEqual(splitOut[1], expected[1]) {
 		fmt.Println("Test line 2 failed")
-		t.Errorf("got\n %v, want %v", out[32:63], expected[1])
+		t.Errorf("got\n %v, want %v", splitOut[1], expected[1])
 		return
 	} else {
 		fmt.Println(" line 2 Test passed successfully")
 	}
-	if !reflect.DeepEqual(out[64:95], expected[2]) {
+	if !reflect.DeepEqual(splitOut[2], expected[2]) {
 		fmt.Println("Test line 3 failed")
-		t.Errorf("got\n %v, want %v", out[64:95], expected[2])
+		t.Errorf("got\n %v, want %v", splitOut[2], expected[2])
 		return
 	} else {
 		fmt.Println(" line 3 Test passed successfully")
 	}
-	if !reflect.DeepEqual(out[96:127], expected[3]) {
+	if !reflect.DeepEqual(splitOut[3], expected[3]) {
 		fmt.Println("Test line 4 failed")
-		t.Errorf("got\n %v, want %v", out[96:127], expected[3])
+		t.Errorf("got\n %v, want %v", splitOut[3], expected[3])
 		return
 	} else {
 		fmt.Println(" line 4 Test passed successfully")
 	}
-	if !reflect.DeepEqual(out[128:159], expected[4]) {
+	if !reflect.DeepEqual(splitOut[4], expected[4]) {
 		fmt.Println("Test line 5 failed")
-		t.Errorf("got\n %v, want %v", out[128:159], expected[4])
+		t.Errorf("got\n %v, want %v", splitOut[4], expected[4])
 		return
 	} else {
 		fmt.Println(" line 5 Test passed successfully")
 	}
-	if !reflect.DeepEqual(out[160:191], expected[5]) {
+	if !reflect.DeepEqual(splitOut[5], expected[5]) {
 		fmt.Println("Test line 6 failed")
-		t.Errorf("got\n %v, want %v", out[160:191], expected[5])
+		t.Errorf("got\n %v, want %v", splitOut[5], expected[5])
 		return
 	} else {
 		fmt.Println(" line 6 Test passed successfully")
 	}
-	if !reflect.DeepEqual(out[192:223], expected[6]) {
+	if !reflect.DeepEqual(splitOut[6], expected[6]) {
 		fmt.Println("Test line 7 failed")
-		t.Errorf("got\n %v, want %v", out[192:223], expected[6])
+		t.Errorf("got\n %v, want %v", splitOut[6], expected[6])
 		return
 	} else {
 		fmt.Println(" line 7 Test passed successfully")
 	}
-	if !reflect.DeepEqual(out[224:255], expected[7]) {
+	if !reflect.DeepEqual(splitOut[7], expected[7]) {
 		fmt.Println("Test  line 8 failed")
-		t.Errorf("got\n %v, want %v", out[224:255], expected[7])
+		t.Errorf("got\n %v, want %v", splitOut[7], expected[7])
 		return
 	} else {
 		fmt.Println(" line 8 Test passed successfully")
