@@ -5,7 +5,7 @@ This program takes optional arguments of color(implemented using flag) and speci
 
 The format of the input received as arguments is:
 
-go run . --color=<color> <letters to be colored> "something"
+go run . --color= **color** **letters to be colored**  **"something"**
 
 ## NOTE
 This program builds on the ASCII Art from  **[ASCII-REPOSITORY](https://learn.zone01kisumu.ke/git/wyonyango/ascii-art.git)**
