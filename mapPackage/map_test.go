@@ -1,7 +1,7 @@
 package mapPackage_test
 
 import (
-	"ascii-art/mapPackage"
+	"ascii-art-color/mapPackage"
 	"fmt"
 	"reflect"
 	"testing"
