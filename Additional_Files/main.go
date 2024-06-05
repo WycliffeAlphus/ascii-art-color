@@ -53,11 +53,10 @@ func PrintingAscii(text, patternFile string) string {
 		}
 		i++
 	}
-	
+
 	lines := strings.Split(text, "\\n")
 	asciiMap := mapPackage.AsciiMapping(patternFile)
 	alphaArray := findSubStringIndex(text, "ow")
-
 
 	count := 0
 	for wordIndex, word := range lines { // case of multiple newlines
@@ -69,26 +68,23 @@ func PrintingAscii(text, patternFile string) string {
 		} else {
 			for n := 0; n < 8; n++ {
 				for runeIndex, ch := range word {
-
-					if wordIndex > 0{
+					if wordIndex > 0 {
 						checkIndex := 0
-						for x := 0; x < wordIndex; x++{
+						for x := 0; x < wordIndex; x++ {
 							checkIndex += len(lines[x]) + 1
 						}
-						if indicesInArr(alphaArray, checkIndex+runeIndex+wordIndex){
+						if indicesInArr(alphaArray, checkIndex+runeIndex+wordIndex) {
 							res += "\033[33m" + asciiMap[ch][n] + "\033[0m"
 							continue
 						}
 						res += asciiMap[ch][n]
 					} else {
-						if indicesInArr(alphaArray, runeIndex){
+						if indicesInArr(alphaArray, runeIndex) {
 							res += "\033[33m" + asciiMap[ch][n] + "\033[0m"
 							continue
 						}
 						res += asciiMap[ch][n]
 					}
-
-					
 				}
 				res += "\n"
 			}
@@ -97,37 +93,13 @@ func PrintingAscii(text, patternFile string) string {
 	return res
 }
 
-
-func isSubstring(s1, s2 string) bool {
-
-	count := 0
-	for i:=0; i < len(s1);{
-		for j:=0; j < len(s2);{
-			if s1[i] == s2[j]{
-				count ++
-				j++	
-			}
-			i ++
-			if i == len(s1){
-				break
-			}
-		}
-	}
-	if count == len(s1) && count == len(s2){
-		return true
-	}
-	return false
-}
-
-
 func findSubStringIndex(mainString, subString string) []int {
 	indices := []int{}
-	for i:=0; i<=len(mainString)-len(subString);i++{
-			fmt.Println(mainString[i:i+len(subString)])
-		if  mainString[i:i+len(subString)] == subString{
-			for j:=i ; j < i+len(subString);j++{
-				
-				indices= append(indices, j)
+	for i := 0; i <= len(mainString)-len(subString); i++ {
+		fmt.Println(mainString[i : i+len(subString)])
+		if mainString[i:i+len(subString)] == subString {
+			for j := i; j < i+len(subString); j++ {
+				indices = append(indices, j)
 			}
 		}
 	}
@@ -136,16 +108,13 @@ func findSubStringIndex(mainString, subString string) []int {
 }
 
 func indicesInArr(arr []int, num int) bool {
-	for _,x := range arr{
-		
-			if x == num{
-				return true
-			
+	for _, x := range arr {
+		if x == num {
+			return true
 		}
 	}
 	return false
 }
-
 
 func main() {
 	fmt.Print(PrintingAscii("hellow \n from owalla\n no wahalla\n nowala", "standard.txt"))
