@@ -56,7 +56,7 @@ func PrintingAscii(text, patternFile string) string {
 	
 	lines := strings.Split(text, "\\n")
 	asciiMap := mapPackage.AsciiMapping(patternFile)
-	alphaArray := findSubStringIndex(text, "l")
+	alphaArray := findSubStringIndex(text, "ow")
 
 
 	count := 0
@@ -76,7 +76,7 @@ func PrintingAscii(text, patternFile string) string {
 							checkIndex += len(lines[x]) + 1
 						}
 						if indicesInArr(alphaArray, checkIndex+runeIndex+wordIndex){
-							res += "\033[34m" + asciiMap[ch][n] + "\033[0m"
+							res += "\033[33m" + asciiMap[ch][n] + "\033[0m"
 							continue
 						}
 						res += asciiMap[ch][n]
@@ -122,14 +122,16 @@ func isSubstring(s1, s2 string) bool {
 
 func findSubStringIndex(mainString, subString string) []int {
 	indices := []int{}
-	for i:=0; i<len(mainString);i++{
-		if  i+len(subString) <= len(mainString) && isSubstring(subString, mainString[i:i+len(subString)]){
+	for i:=0; i<=len(mainString)-len(subString);i++{
+			fmt.Println(mainString[i:i+len(subString)])
+		if  mainString[i:i+len(subString)] == subString{
 			for j:=i ; j < i+len(subString);j++{
 				
 				indices= append(indices, j)
 			}
 		}
 	}
+	fmt.Println(indices)
 	return indices
 }
 
@@ -146,5 +148,5 @@ func indicesInArr(arr []int, num int) bool {
 
 
 func main() {
-	fmt.Print(PrintingAscii("yellow\nblue", "standard.txt"))
+	fmt.Print(PrintingAscii("hellow \n from owalla\n no wahalla\n nowala", "standard.txt"))
 }
