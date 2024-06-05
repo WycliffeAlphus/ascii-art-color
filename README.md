@@ -19,17 +19,27 @@ To use the ASCII Art Generator, follow these steps:
 5. Output is the graphic representation of the input string using ASCII characters in specified color or specified letter graphics will be      colored.
 
 ## Example
-Suppose you want to create a colored ASCII representation of the word "HeY GuYs wassgood aGuys".
+Suppose you want to create a colored ASCII representation of the word "HeY GuYs\nwassgood aGuys".
 
  You would run the program with the following command:
 ```
-go run . --color=blue GuYs "Hey GuYs\n wassgood aGuYs
+go run . --color=blue GuYs "Hey GuYs\n wassgood aGuYs"
 ```
 
 The output would be:
 
 ![alt text](<Screenshot from 2024-06-03 17-14-33.png>)
 
+## Example
+Suppose the specified letters do not exist as a substring of string to be colorized,the specified letters will be colored.
+
+ You would run the program with the following command:
+```
+go run . --color=red eo hello
+```
+The output will be:
+
+![alt text](<Screenshot from 2024-06-05 10-26-58.png>)
 
 ## Dependencies
 This program requires Go (Golang) to be installed on your system. You can download and install it from the [official Go website](https://golang.org/dl/).
