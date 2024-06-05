@@ -53,19 +53,13 @@ func PrintingAscii(text, patternFile string) string {
 		}
 		i++
 	}
-	
+
 	lines := strings.Split(text, "\\n")
 	asciiMap := mapPackage.AsciiMapping(patternFile)
 	alphaArray := findSubStringIndex(text, "ow")
 
-
 	count := 0
-<<<<<<< HEAD
-	// alphaCount := 0
-	for j, word := range lines { // case of multiple newlines
-=======
 	for wordIndex, word := range lines { // case of multiple newlines
->>>>>>> 327ec6df31ba8d67c3fd7a887012b53bffdea191
 		if word == "" {
 			count++
 			if count < len(lines) {
@@ -73,43 +67,22 @@ func PrintingAscii(text, patternFile string) string {
 			}
 		} else {
 			for n := 0; n < 8; n++ {
-<<<<<<< HEAD
-				for i, ch := range word {
-					if j > 0 {
-						checkIndex := 0
-						for x := 0; x < j; x++ {
-							checkIndex += len(lines[x]) + 1
-						}
-						if intIsInArr(alphaArray, checkIndex+i+j) {
-							res += "\033[34m" + asciiMap[ch][n] + "\033[0m"
-=======
 				for runeIndex, ch := range word {
-
-					if wordIndex > 0{
+					if wordIndex > 0 {
 						checkIndex := 0
-						for x := 0; x < wordIndex; x++{
+						for x := 0; x < wordIndex; x++ {
 							checkIndex += len(lines[x]) + 1
 						}
-						if indicesInArr(alphaArray, checkIndex+runeIndex+wordIndex){
+						if indicesInArr(alphaArray, checkIndex+runeIndex+wordIndex) {
 							res += "\033[33m" + asciiMap[ch][n] + "\033[0m"
->>>>>>> 327ec6df31ba8d67c3fd7a887012b53bffdea191
 							continue
 						}
 						res += asciiMap[ch][n]
 					} else {
-<<<<<<< HEAD
-						if intIsInArr(alphaArray, i) {
-							res += "\033[34m" + asciiMap[ch][n] + "\033[0m"
-							continue
-						}
-
-						// currentIndex = len(lines[j])
-=======
-						if indicesInArr(alphaArray, runeIndex){
+						if indicesInArr(alphaArray, runeIndex) {
 							res += "\033[33m" + asciiMap[ch][n] + "\033[0m"
 							continue
 						}
->>>>>>> 327ec6df31ba8d67c3fd7a887012b53bffdea191
 						res += asciiMap[ch][n]
 					}
 				}
@@ -120,58 +93,13 @@ func PrintingAscii(text, patternFile string) string {
 	return res
 }
 
-<<<<<<< HEAD
-func isDuplicate(s1, s2 string) bool {
-	count := 0
-	for i := 0; i < len(s1); {
-		for j := 0; j < len(s2); {
-			if s1[i] == s2[j] {
-				count++
-				j++
-
-=======
-
-func isSubstring(s1, s2 string) bool {
-
-	count := 0
-	for i:=0; i < len(s1);{
-		for j:=0; j < len(s2);{
-			if s1[i] == s2[j]{
-				count ++
-				j++	
->>>>>>> 327ec6df31ba8d67c3fd7a887012b53bffdea191
-			}
-			i++
-			if i == len(s1) {
-				break
-			}
-		}
-	}
-	if count == len(s1) && count == len(s2) {
-		return true
-	}
-	return false
-}
-
-<<<<<<< HEAD
-func findArr(mainString, subString string) []int {
-	res := []int{}
-	for i := 0; i < len(mainString); i++ {
-		fmt.Println("Here")
-		if i+len(subString) <= len(mainString) && isDuplicate(subString, mainString[i:i+len(subString)]) {
-			for j := i; j < i+len(subString); j++ {
-				res = append(res, j)
-=======
-
 func findSubStringIndex(mainString, subString string) []int {
 	indices := []int{}
-	for i:=0; i<=len(mainString)-len(subString);i++{
-			fmt.Println(mainString[i:i+len(subString)])
-		if  mainString[i:i+len(subString)] == subString{
-			for j:=i ; j < i+len(subString);j++{
-				
-				indices= append(indices, j)
->>>>>>> 327ec6df31ba8d67c3fd7a887012b53bffdea191
+	for i := 0; i <= len(mainString)-len(subString); i++ {
+		fmt.Println(mainString[i : i+len(subString)])
+		if mainString[i:i+len(subString)] == subString {
+			for j := i; j < i+len(subString); j++ {
+				indices = append(indices, j)
 			}
 		}
 	}
@@ -179,55 +107,15 @@ func findSubStringIndex(mainString, subString string) []int {
 	return indices
 }
 
-<<<<<<< HEAD
-func FindSubString(mainString, subString string) [][]int {
-	intArrArr := [][]int{}
-	mainLen := len(mainString)
-	subLen := len(subString)
-
-	// Iterate through the main string
-	for i := 0; i <= mainLen-subLen; i++ {
-		if mainString[i:i+subLen] == subString {
-			matchIndices := make([]int, subLen)
-			for j := 0; j < subLen; j++ {
-				matchIndices[j] = i + j
-			}
-			intArrArr = append(intArrArr, matchIndices)
-		}
-	}
-
-	// Return message if substring not found
-	if len(intArrArr) == 0 {
-		msg := "$" + subString + "$ is not present in $" + mainString + "$"
-		fmt.Println(msg)
-		os.Exit(0)
-	}
-
-	return intArrArr
-}
-
-func intIsInArr(arr []int, num int) bool {
+func indicesInArr(arr []int, num int) bool {
 	for _, x := range arr {
 		if x == num {
 			return true
-=======
-func indicesInArr(arr []int, num int) bool {
-	for _,x := range arr{
-		
-			if x == num{
-				return true
-			
->>>>>>> 327ec6df31ba8d67c3fd7a887012b53bffdea191
 		}
 	}
 	return false
 }
 
 func main() {
-<<<<<<< HEAD
-	fmt.Print(PrintingAscii("Hellow \nworld \n owmy \nmyow", "standard.txt"))
-}
-=======
 	fmt.Print(PrintingAscii("hellow \n from owalla\n no wahalla\n nowala", "standard.txt"))
 }
->>>>>>> 327ec6df31ba8d67c3fd7a887012b53bffdea191
