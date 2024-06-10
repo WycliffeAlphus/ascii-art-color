@@ -29,7 +29,7 @@ EX: go run . --color=<color> <letters to be colored> "something"`)
 	if len(os.Args) == 3 {
 
 		color := utils.FindingColor(strings.ToLower(os.Args[1]))
-		ap := printingasciipackage.PrintingAscii(os.Args[2], "standard.txt", color, "")
+		ap := printingasciipackage.PrintingAscii(os.Args[2], "standard.txt", color, os.Args[2])
 		fmt.Print(ap)
 	}
 	if len(os.Args) == 4 {
