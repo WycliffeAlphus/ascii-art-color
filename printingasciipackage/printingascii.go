@@ -56,37 +56,7 @@ func PrintingAscii(text, patternFile, color, subString string) string {
 	asciiMap := mapPackage.AsciiMapping(patternFile)
 	alphaArray := utils.FindSubStringIndex(text, subString)
 	count := 0
-	
-	if !strings.Contains(text,subString){
-	for _, word := range lines { // case of multiple newlines
-		if word == "" {
-			count++
-			if count < len(lines) {
-				res += "\n"
-			}
-		} else {
-			for n := 0; n < 8; n++ {
-				for _, ch := range word {
-					if len(subString) == 0{
-						res += color + asciiMap[ch][n] + "\033[0m"
-					} else {
-						if isInside(subString,string(ch)){
-								res += color + asciiMap[ch][n] + "\033[0m" 
-								 continue
-							}
-								res+=asciiMap[ch][n]			
-						
-					}
-				
-			}
-			res += "\n"
-		}
-		
-	}
-	
-}
-	return res 
-}else{
+
 	for wordIndex, word := range lines { // case of multiple newlines
 		if word == "" {
 			count++
@@ -119,15 +89,6 @@ func PrintingAscii(text, patternFile, color, subString string) string {
 			}
 		}
 	}
-}
-	return res
-}
 
-func isInside(input,subInput string)bool{
-	for _,char:=range input{
-		if subInput==string(char){
-			return true
-		}
-	}
-	return false
+	return res
 }
