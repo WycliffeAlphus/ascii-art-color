@@ -54,6 +54,5 @@ func HexToDec(s string) []int {
 		}
 		hexIntSlice = append(hexIntSlice, int(dec))
 	}
-	fmt.Println(hexIntSlice)
 	return hexIntSlice
 }
