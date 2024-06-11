@@ -14,6 +14,10 @@ func stringSplitter(s string) []int {
 	editedString = strings.TrimRight(editedString, ")")
 
 	stringSplit := strings.Split(editedString, ",")
+	if len(stringSplit)!=3{
+		fmt.Fprintln(os.Stderr,`array values shouldn't exceede three`)
+		os.Exit(0)
+	}
 
 	for _, ch := range stringSplit {
 		number, err := strconv.Atoi(strings.TrimSpace(ch))
