@@ -6,6 +6,8 @@ import (
 	"strconv"
 )
 
+/*The HexToDec function converts a hexadecimal color code to its RGB integer values. 
+This function handles both 3-digit and 6-digit hexadecimal codes. */
 func HexToDec(s string) []int {
 	for i, ch := range s {
 		if ch == '#' && i != 0 {
