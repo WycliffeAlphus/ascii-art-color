@@ -34,20 +34,15 @@ Suppose you want to create a colored ASCII representation of the string "HeY GuY
 
  You would run the program with one of following commands(Note that the program can accept color inputs in three formats: RGB representation, hexadecimal representation, and explicit color names such as "red"):
 
-1.
 ```bash
 go run . --color=blue GuYs "Hey GuYs\n wassgood aGuYs"
 ```
- 2.
 ```bash
 go run .  --color="rgb(0, 0, 255)" GuYs "Hey GuYs\n wassgood aGuYs"
 ```
-
-3.
 ```
 go run .  --color=#0000FF GuYs "Hey GuYs\n wassgood aGuYs"
 ```
-4.
 ```
 go run .  --color=#00F GuYs "Hey GuYs\n wassgood aGuYs"
 ```
@@ -58,23 +53,15 @@ Output is the graphic representation of the input string using ASCII characters 
 ## Example 2
 Suppose the substring to be colored is not specified,the whole string will be colored in the given color. 
 You would run the program with one  of the following commands:
-
-1.
 ```bash
 go run . --color=red "Hello World"
 ```
-2.
-
 ```bash
 go run . --color=rgb(255, 0, 0) "Hello World"
 ```
-
-3. 
-
 ```
 go run . --color=#FF0000 "Hello World"
 ```
-4. 
 ```
 go run . --color=#F00 "Hello World"
 ```
