@@ -32,7 +32,7 @@ go mod init ascii-art color
 ## Example 1
 Suppose you want to create a colored ASCII representation of the string "HeY GuYs\nwassgood aGuys" and color GuYs in blue.
 
- You would run the program with one of following commands(Note that the program can accept color inputs in three formats: RGB representation, hexadecimal representation, and explicit color names such as "red"):
+ You would run the program with one of following commands(Note that the program can accept color inputs in three formats: RGB representation, hexadecimal representation, and explicit color names such as "blue"):
 
 ```bash
 go run . --color=blue GuYs "Hey GuYs\n wassgood aGuYs"
