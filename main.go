@@ -11,11 +11,15 @@ import (
 )
 
 func main() {
+	// Checks for presence of standard file exists
 	fileInfo, err := os.Stat("standard.txt")
 	if err != nil{
 		fmt.Println(err.Error())
 		return
 	}
+	// Checks incase of any modification done on standard text
+	// Incase of modification the byte size will be not eqaul to 6623
+	// Triggering a re-download
 	if fileInfo.Size() != 6623{
 		err := utils.DownloadStd()
 		if err != nil{
