@@ -1,5 +1,8 @@
 package utils
 
+/*This function is used to return ANSI escape codes for different colors. 
+ANSI escape codes are sequences of characters used to control the formatting,
+color, and other output options on text terminals.*/
 func color(color string) string {
 	mapColor := map[string]string{
 		"black":   "\033[30m",
