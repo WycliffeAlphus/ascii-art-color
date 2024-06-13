@@ -15,7 +15,7 @@ func stringSplitter(s string) []int {
 
 	stringSplit := strings.Split(editedString, ",")
 	if len(stringSplit) != 3 {
-		fmt.Fprintln(os.Stderr, `array values shouldn't exceed three`)
+		fmt.Fprintln(os.Stderr, `Array values should be three`)
 		os.Exit(0)
 	}
 
