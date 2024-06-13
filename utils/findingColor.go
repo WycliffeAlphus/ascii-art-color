@@ -26,13 +26,13 @@ func FindingColor(s string) string {
 		ansiNum := RGBtoAnsi(rgbarray[0], rgbarray[1], rgbarray[2])
 		color := ansiColor(ansiNum)
 		return color
-	} else if strings.Contains(colorWanted,"#"){
-		hexInt:=HexToDec(colorWanted)
-		ansiNum:=RGBtoAnsi(hexInt[0],hexInt[1],hexInt[2])
-        color:=ansiColor(ansiNum)
+	} else if strings.Contains(colorWanted, "#") {
+		hexInt := HexToDec(colorWanted)
+		ansiNum := RGBtoAnsi(hexInt[0], hexInt[1], hexInt[2])
+		color := ansiColor(ansiNum)
 		return color
 
-	}else {
+	} else {
 		color := color(colorWanted)
 		if color == "" {
 			fmt.Println(`Usage: go run . [OPTION] [STRING]
