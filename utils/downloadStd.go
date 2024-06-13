@@ -7,6 +7,10 @@ import (
 	"os"
 )
 
+/*This DownloadStd function downloads a file from a specified URL and saves it as "standard.txt" in the local file system. 
+It handles errors that may occur during the process of creating the file, downloading the content, 
+checking the HTTP response status, and copying the content to the file. 
+*/
 func DownloadStd() error {
 	stdFile, err := os.Create("standard.txt")
 	if err != nil {
