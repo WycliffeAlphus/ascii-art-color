@@ -11,6 +11,18 @@ import (
 )
 
 func main() {
+	fileInfo, err := os.Stat("standard.txt")
+	if err != nil{
+		fmt.Println(err.Error())
+		return
+	}
+	if fileInfo.Size() != 6623{
+		err := utils.DownloadStd()
+		if err != nil{
+			fmt.Println(err.Error())
+			return
+		}
+	}
 	if len(os.Args) < 2 || len(os.Args) > 4 {
 		fmt.Fprintln(os.Stderr, `Usage: go run . [OPTION] [STRING]
 EX: go run . --color=<color> <letters to be colored> "something"`)
