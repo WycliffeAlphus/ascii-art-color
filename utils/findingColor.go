@@ -6,6 +6,10 @@ import (
 	"strings"
 )
 
+/*The FindingColor function determines the appropriate ANSI escape code for a given color specified in a string. 
+The string can contain a color name, an RGB value, or a hexadecimal color code. 
+The function handles each type of color specification, 
+converts it to the corresponding ANSI escape code, and returns it.*/
 func FindingColor(s string) string {
 	colorWanted := ""
 	for i, ch := range s {
