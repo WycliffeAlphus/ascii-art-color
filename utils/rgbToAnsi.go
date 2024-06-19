@@ -1,7 +1,9 @@
 package utils
 
-/*The RGBtoAnsi function converts RGB color values 
-(in the range 0-255) to an ANSI color code.*/
+/*
+The RGBtoAnsi function converts RGB color values
+(in the range 0-255) to an ANSI color code.
+*/
 func RGBtoAnsi(R, G, B int) int {
 	r := R / 51
 	g := G / 51

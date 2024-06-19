@@ -7,8 +7,10 @@ import (
 	"strings"
 )
 
-/*The stringSplitter function processes a string that represents an RGB color in a specific format (rgb(R, G, B)) 
-and extracts the numerical values for each color component (R, G, B).*/
+/*
+The stringSplitter function processes a string that represents an RGB color in a specific format (rgb(R, G, B))
+and extracts the numerical values for each color component (R, G, B).
+*/
 func stringSplitter(s string) []int {
 	res := []int{}
 
