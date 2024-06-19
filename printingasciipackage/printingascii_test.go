@@ -11,7 +11,7 @@ import (
 func TestPrintingAscii(t *testing.T) {
 	args := "hello" // string to be patterned and printed
 	file := "standard.txt"
-	out := printingasciipackage.PrintingAscii(args, file, "\033[31m", "")
+	out := printingasciipackage.PrintingAscii(args, file, "\033[31m", "hello")
 	expected := []string{
 		"\033[31m _      \033[0m\033[31m       \033[0m\033[31m _  \033[0m\033[31m _  \033[0m\033[31m        \033[0m",
 		"\033[31m| |     \033[0m\033[31m       \033[0m\033[31m| | \033[0m\033[31m| | \033[0m\033[31m        \033[0m",
