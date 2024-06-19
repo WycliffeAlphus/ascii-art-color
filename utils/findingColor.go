@@ -11,10 +11,17 @@ The string can contain a color name, an RGB value, or a hexadecimal color code.
 The function handles each type of color specification, 
 converts it to the corresponding ANSI escape code, and returns it.*/
 func FindingColor(s string) string {
+	if !strings.HasPrefix(s,"--color="){
+		fmt.Println(`Usage: go run . [OPTION] [STRING]
+
+EX: go run . --color=<color> <substring to be colored> "something"`)
+					os.Exit(0)
+	}
 	colorWanted := ""
 	for i, ch := range s {
 		if ch == '=' {
 			colorWanted = s[i+1:]
+
 			break
 		}
 	}
@@ -41,8 +48,7 @@ func FindingColor(s string) string {
 		if color == "" {
 			fmt.Println(`Usage: go run . [OPTION] [STRING]
 
-EX: go run . --color=<color> <substring to be colored> "something"
-				`)
+EX: go run . --color=<color> <substring to be colored> "something"`)
 			os.Exit(0)
 		}
 		return color
