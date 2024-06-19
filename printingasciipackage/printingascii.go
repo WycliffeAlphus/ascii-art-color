@@ -69,9 +69,9 @@ func PrintingAscii(text, patternFile, color, subString string) string {
 					if wordIndex > 0 {
 						checkIndex := 0
 						for x := 0; x < wordIndex; x++ {
-							checkIndex += len(lines[x]) + 1
+							checkIndex += len(lines[x]) + 2
 						}
-						if utils.IndicesInArr(alphaArray, checkIndex+runeIndex+wordIndex) {
+						if utils.IndicesInArr(alphaArray, checkIndex+runeIndex) {
 
 							res += color + asciiMap[ch][n] + "\033[0m"
 							continue
