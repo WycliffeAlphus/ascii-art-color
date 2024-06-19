@@ -11,7 +11,6 @@ import (
 
 // Reads input text,gets the pattern convert it to ascii art
 func PrintingAscii(text, patternFile, color, subString string) string {
-	// fmt.Println(len(color))
 	text = strings.ReplaceAll(text, "\n", "\\n")
 	res := ""
 	for i := 0; i < len(text); {
