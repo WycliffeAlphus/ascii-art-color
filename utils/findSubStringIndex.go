@@ -14,5 +14,6 @@ func FindSubStringIndex(mainString, subString string) []int {
 			}
 		}
 	}
+
 	return indices
 }

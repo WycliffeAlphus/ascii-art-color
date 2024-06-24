@@ -47,7 +47,8 @@ EX: go run . --color=<color> <substring to be colored> "something"`)
 	if len(os.Args) == 3 {
 
 		color := utils.FindingColor(strings.ToLower(os.Args[1]))
-		ap := printingasciipackage.PrintingAscii(os.Args[2], "standard.txt", color, os.Args[2])
+		substring:=strings.ReplaceAll(os.Args[2],"\n","\\n")
+		ap := printingasciipackage.PrintingAscii(os.Args[2], "standard.txt", color, substring)
 		fmt.Print(ap)
 	}
 	if len(os.Args) == 4 {
